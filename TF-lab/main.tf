@@ -4,9 +4,9 @@ provider "aws" {
 }
 
 resource "aws_instance" "ec2" {
-  ami = "ami-047a51fa27710816e"
-  instance_type = "t2.micro"
-  availability_zone = "us-east-1a"
+  ami = var.ami_id
+  instance_type = var.instance_type
+  availability_zone = var.region_az
 
   tags = {
     "Name" = "tf-ec2-test"
@@ -16,7 +16,7 @@ resource "aws_instance" "ec2" {
 resource "aws_ebs_volume" "ebs" {
   type = "gp2"
   size = 35
-  availability_zone = "us-east-1a"
+  availability_zone = var.region_az
 
   tags = {
     "Name" = "tf-ebs-test"
