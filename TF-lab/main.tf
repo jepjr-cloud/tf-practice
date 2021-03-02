@@ -3,14 +3,10 @@ provider "aws" {
   shared_credentials_file = "/home/joaoeduardo/.aws/credentials"
 }
 
-resource "aws_instance" "ec2" {
-  ami               = var.ami_id
-  instance_type     = var.instance_type
-  availability_zone = var.region_az
-
-  tags = {
-    "Name" = "tf-ec2-test"
-  }
+module "ec2" {
+  source = "/home/joaoeduardo/Desktop/tf-practice/modules/ec2-module"
+  name = "tf-ec2-practice"
+  ami = var.ami_id
 }
 
 resource "aws_ebs_volume" "ebs" {
@@ -24,7 +20,7 @@ resource "aws_ebs_volume" "ebs" {
 }
 
 resource "aws_volume_attachment" "ec2-ebs-attach" {
-  instance_id = aws_instance.ec2.id
+  instance_id = module.ec2.id
   volume_id   = aws_ebs_volume.ebs.id
   device_name = "/dev/sdh"
 }
