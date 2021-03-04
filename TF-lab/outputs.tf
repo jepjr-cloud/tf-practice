@@ -27,17 +27,17 @@ output "private_ip" {
 #--------------------------------------------------
 
 output "ebs_id" {
-  value       = aws_ebs_volume.ebs.id
+  value       = module.ebs.id
   description = "id of the ebs volume (gb)"
 }
 
 output "ebs_arn" {
-  value       = aws_ebs_volume.ebs.arn
+  value       = module.ebs.arn
   description = "ARN of the ebs volume (gb)"
 }
 
 output "ebs_size" {
-  value       = aws_ebs_volume.ebs.size
+  value       = module.ebs.size
   description = "size of the ebs volume (gb)"
 }
 

@@ -4,6 +4,6 @@ resource "aws_instance" "ec2" {
   availability_zone = var.availability_zone
   
   tags = {
-    "Name" = var.name
+    "Name" = "${var.name}-ec2-tf" 
   }
 }

@@ -12,5 +12,11 @@ variable "availability_zone" {
 variable "size" {
   description = "Size of the EBS volume"
   type = string
-  default = "35"
+  default = "20"
+}
+
+variable "type" {
+  description = "Type of the ebs volume"
+  type = string
+  default = "gp2"
 }

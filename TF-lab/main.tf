@@ -5,23 +5,21 @@ provider "aws" {
 
 module "ec2" {
   source = "/home/joaoeduardo/Desktop/tf-practice/modules/ec2-module"
-  name = "tf-ec2-practice"
+  
   ami = var.ami_id
+  name = "joao"
 }
 
-resource "aws_ebs_volume" "ebs" {
-  type              = "gp2"
-  size              = 35
+module "ebs" {
+  source = "/home/joaoeduardo/Desktop/tf-practice/modules/ebs-module"
+  
   availability_zone = var.region_az
-
-  tags = {
-    "Name" = "tf-ebs-test"
-  }
+  name = "joao"
 }
 
 resource "aws_volume_attachment" "ec2-ebs-attach" {
   instance_id = module.ec2.id
-  volume_id   = aws_ebs_volume.ebs.id
+  volume_id   = module.ebs.id
   device_name = "/dev/sdh"
 }
 

@@ -4,6 +4,6 @@ resource "aws_ebs_volume" "ebs" {
   availability_zone = var.availability_zone
 
   tags = {
-    "Name" = var.name + "-ebs"
+    "Name" = "${var.name}-ebs-tf" 
   }
 }
